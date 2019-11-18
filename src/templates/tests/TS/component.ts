@@ -13,14 +13,20 @@ const importTemplate = (fileExports: FileExport[]) => {
     (x: FileExport) => x.type === 'ExportDefaultDeclaration'
   );
 
+  const namedExports = fileExports.filter(
+    (x: FileExport) => x.type === 'ExportNamedDeclaration'
+  );
+
+  const namedExportString =
+
   if (hasDefaultExport) {
-    console.log('we have a default export')
+    console.log('we have a default export');
   }
   return `
   `;
 };
 
-export const typescriptJSX = (fileExports: FileExport[]) => {
+export const typescriptJSX = (fileExports: FileExport[], fileName: string) => {
   const arr = fileExports.map((x: FileExport) => {
     return testTemplate(x);
   });

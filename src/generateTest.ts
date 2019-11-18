@@ -5,11 +5,12 @@ import prettier from 'prettier';
 
 export const generateTest = (
   fileExports: FileExport[],
-  ext: ValidFileExtensions
+  ext: ValidFileExtensions,
+  fileName: string
 ) => {
   switch (ext) {
     case '.tsx':
-      return prettier.format(typescriptJSX(fileExports));
+      return prettier.format(typescriptJSX(fileExports, fileName));
     case '.ts':
     case '.js':
     case '.jsx':
