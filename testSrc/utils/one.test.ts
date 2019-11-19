@@ -7,56 +7,56 @@ import hello, {
   exportDivide
 } from "./one";
 
-describe("hello ", () => {
-  it("should fail the automatically generated test", () => {
+describe("hello", () => {
+  it("hello should fail the automatically generated test", () => {
     const actual = hello();
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
-describe("add ", () => {
-  it("should fail the automatically generated test", () => {
+describe("add", () => {
+  it("add should fail the automatically generated test", () => {
     const actual = add();
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
-describe("multiply ", () => {
-  it("should fail the automatically generated test", () => {
+describe("multiply", () => {
+  it("multiply should fail the automatically generated test", () => {
     const actual = multiply();
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
-describe("divide ", () => {
-  it("should fail the automatically generated test", () => {
+describe("divide", () => {
+  it("divide should fail the automatically generated test", () => {
     const actual = divide();
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
-describe("exportAdd ", () => {
-  it("should fail the automatically generated test", () => {
+describe("exportAdd", () => {
+  it("exportAdd should fail the automatically generated test", () => {
     const actual = exportAdd();
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
-describe("exportMultiply ", () => {
-  it("should fail the automatically generated test", () => {
+describe("exportMultiply", () => {
+  it("exportMultiply should fail the automatically generated test", () => {
     const actual = exportMultiply();
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
-describe("exportDivide ", () => {
-  it("should fail the automatically generated test", () => {
+describe("exportDivide", () => {
+  it("exportDivide should fail the automatically generated test", () => {
     const actual = exportDivide();
     const expected = null;
     expect(actual).toBe(expected);
