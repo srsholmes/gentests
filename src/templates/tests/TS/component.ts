@@ -1,9 +1,11 @@
 import { FileExport } from '../../../types';
-
+ //TODO: Make this a component test 
 const testTemplate = ({ name }: { name: string }) => `
-  describe('${name} ', () => {
-    it('should fail the automatically generated test', () => {
-      expect(true).toBe(false);
+  describe('${name}', () => {
+    it('${name} should fail the automatically generated test', () => {
+      const actual = ${name}();
+      const expected = null;
+      expect(actual).toBe(expected);
     });
   });
  `;

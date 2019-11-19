@@ -9,42 +9,56 @@ import hello, {
 
 describe("hello ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = hello();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
 
 describe("add ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = add();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
 
 describe("multiply ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = multiply();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
 
 describe("divide ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = divide();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
 
 describe("exportAdd ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = exportAdd();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
 
 describe("exportMultiply ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = exportMultiply();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
 
 describe("exportDivide ", () => {
   it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+    const actual = exportDivide();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });

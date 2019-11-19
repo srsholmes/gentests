@@ -5,6 +5,7 @@ const DEFAULT_IGNORED = [
   '**/components/**/*.stories.tsx',
   '**/components/**/*.test.tsx',
   '**/components/**/*.test.ts',
+  '**/utils/**/*.test.ts',
   '**/components/**/*.test.js',
   '**/components/**/*.test.jsx',
   '**/components/**/__mocks__/*.tsx',

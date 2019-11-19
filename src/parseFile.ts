@@ -12,6 +12,7 @@ const getDefaultName = (node: any, fileName: string) => {
 };
 
 const getNamedExport = (node: any) => {
+  console.log({ node });
   if (node.declaration && node.declaration.id) {
     return {
       type: node.type,
@@ -21,6 +22,12 @@ const getNamedExport = (node: any) => {
   }
   if (node.declaration && node.declaration.declarations) {
     return node.declaration.declarations.map((declaration: any) => {
+      console.log('LOL');
+      console.log({ declaration });
+      console.log('AAAAAAAAAAAAAA');
+      console.log(declaration.init.params);
+      console.log('BBBBBBBBBBBBB');
+      console.log(declaration.init.params[0].typeAnnotation.type);
       return {
         type: node.type,
         declarationType: declaration.id.type,
@@ -44,7 +51,10 @@ function flatten(arr: any[]) {
 }
 
 const flowComments = ['// @flow', '/* @flow */'];
-const getPlugins = (fileContents: string, fileExtension: ValidFileExtensions) => {
+const getPlugins = (
+  fileContents: string,
+  fileExtension: ValidFileExtensions
+) => {
   console.log({ fileExtension });
   if (fileExtension === '.ts' || fileExtension === '.tsx') {
     return ['typescript', 'jsx'] as ParserPlugin[];
