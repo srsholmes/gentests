@@ -28,12 +28,13 @@ const importTemplate = (fileExports: FileExport[], fileName: string) => {
           namedExports: []
         };
       } else if (curr.type === 'ExportNamedDeclaration') {
-        // TODO: Check here to see if there is a default export, if there wasnt, there will be no 'import' on the begining of exportString
         const addOpenBracket = acc.namedExports.length === 0;
         const addCloseBracket = index === arr.length - 1;
-        const val = `${addOpenBracket ? '{' : ''} ${curr.name}, ${
-          addCloseBracket ? '}' : ''
-        }`;
+        const val = `
+          ${addOpenBracket ? '{' : ''} 
+          ${curr.name}, 
+          ${addCloseBracket ? '}' : ''}
+        `;
         return {
           exportString: `${acc.exportString} ${val}`,
           defaultExport: acc.defaultExport,
@@ -65,6 +66,5 @@ export const typescriptJSX = (fileExports: FileExport[], fileName: string) => {
     ${importStatement} 
     ${tests.join('\n')}
   `;
-  console.log({ res });
   return res;
 };

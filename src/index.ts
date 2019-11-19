@@ -6,7 +6,8 @@ import { join } from 'path';
 
 (async () => {
   const res = await getDirectoriesAndComponents();
-  res.forEach(x => {
+  res.slice(0,1).forEach(x => {
+    console.log({ x })
     const { dir, name, ext } = x;
     const testDir = dir;
     const testFile = join(dir, `${name}.test${ext}`);

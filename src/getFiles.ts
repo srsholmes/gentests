@@ -21,9 +21,16 @@ const IGNORED_COMPONENTS: string[] = [
 
 // TODO: Make the path dymanic with a user input.
 export const getDirectoriesAndComponents = async (ignored: string[] = []) =>
-  fg([join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}')], {
-    ignore: [...DEFAULT_IGNORED, ...ignored]
-  }).then((files: any[]) => {
+  fg(
+    [
+      join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
+      join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
+    ],
+    {
+      ignore: [...DEFAULT_IGNORED, ...ignored]
+    }
+  ).then((files: any[]) => {
+    console.log({ files });
     return files.map(file => {
       const { dir, name, ext } = parse(file);
       return { dir, name, ext };

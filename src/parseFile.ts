@@ -44,9 +44,10 @@ function flatten(arr: any[]) {
 }
 
 const flowComments = ['// @flow', '/* @flow */'];
-const getPlugins = (fileContents: string, fileExtension: string) => {
-  if (fileExtension === 'ts' || fileExtension === 'tsx') {
-    return ['jsx', 'typescript'] as ParserPlugin[];
+const getPlugins = (fileContents: string, fileExtension: ValidFileExtensions) => {
+  console.log({ fileExtension });
+  if (fileExtension === '.ts' || fileExtension === '.tsx') {
+    return ['typescript', 'jsx'] as ParserPlugin[];
   }
 
   // TODO: FLow support
