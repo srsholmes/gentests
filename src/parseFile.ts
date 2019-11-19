@@ -1,5 +1,6 @@
 import { parse, ParserPlugin } from '@babel/parser';
 import { Statement } from '@babel/types';
+import traverse from '@babel/traverse';
 
 const getDefaultName = (node: any, fileName: string) => {
   if (node.declaration) {
@@ -98,6 +99,14 @@ export const parseFile = ({
         return getNamedExport(node);
       }
       return null;
+    });
+
+    traverse(parsedCode, {
+      enter(path) {
+        if (path.isIdentifier({ name: 'divide' })) {
+          console.log('I FOUND DIVIDE');
+        }
+      }
     });
 
     return {
