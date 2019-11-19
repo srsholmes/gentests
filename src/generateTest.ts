@@ -10,12 +10,10 @@ export const generateTest = (
 ) => {
   switch (ext) {
     case '.tsx':
-      return prettier.format(typescriptJSX(fileExports, fileName));
     case '.ts':
     case '.js':
     case '.jsx':
     default:
-      return `default template`;
+      return prettier.format(typescriptJSX(fileExports, fileName));
   }
-  console.log('Generate Test Template');
 };

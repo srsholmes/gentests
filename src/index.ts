@@ -1,12 +1,15 @@
 import { parseFile, ValidFileExtensions } from './parseFile';
-import { readFileSync } from 'fs';
+import { existsSync, promises, readFileSync } from 'fs';
 import { getDirectoriesAndComponents } from './getFiles';
 import { generateTest } from './generateTest';
+import { join } from 'path';
 
 (async () => {
   const res = await getDirectoriesAndComponents();
-  res.slice(0, 1).forEach(x => {
+  res.forEach(x => {
     const { dir, name, ext } = x;
+    const testDir = dir;
+    const testFile = join(dir, `${name}.test${ext}`);
     const filePath = `${dir}/${name}${ext}`;
     const fileContents = readFileSync(filePath).toString();
     const exportsFromFile = parseFile({
@@ -15,16 +18,23 @@ import { generateTest } from './generateTest';
       fileExtension: ext as ValidFileExtensions
     });
 
-    console.log({ exportsFromFile });
-    console.log(exportsFromFile!.fileExports);
-
     if (exportsFromFile) {
       const testTemplate = generateTest(
         exportsFromFile.fileExports,
         ext as ValidFileExtensions,
-        fileName
+        name
       );
-      console.log({ testTemplate });
+
+      if (existsSync(testDir)) {
+        promises.writeFile(testFile, testTemplate, 'utf8');
+      } else {
+        promises
+          .mkdir(testDir)
+          .then(() => {
+            promises.writeFile(testFile, testTemplate, 'utf8');
+          })
+          .catch(() => {});
+      }
     }
   });
 })();

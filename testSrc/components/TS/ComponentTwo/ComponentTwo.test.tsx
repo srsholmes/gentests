@@ -1,6 +1,7 @@
+import { ComponentTwo } from "./ComponentTwo";
 
-describe('The describe block', () => {
-  test('true equals true', () => {
-    expect(true).toBe(true);
+describe("ComponentTwo ", () => {
+  it("should fail the automatically generated test", () => {
+    expect(true).toBe(false);
   });
 });

@@ -4,6 +4,9 @@ import fg from 'fast-glob';
 const DEFAULT_IGNORED = [
   '**/components/**/*.stories.tsx',
   '**/components/**/*.test.tsx',
+  '**/components/**/*.test.ts',
+  '**/components/**/*.test.js',
+  '**/components/**/*.test.jsx',
   '**/components/**/__mocks__/*.tsx',
   '**/components/**/__mocks__/*.js',
   '**/components/**/__mocks__/*.jsx',

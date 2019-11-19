@@ -8,28 +8,54 @@ const testTemplate = ({ name }: { name: string }) => `
   });
  `;
 
-const importTemplate = (fileExports: FileExport[]) => {
-  const hasDefaultExport = fileExports.find(
-    (x: FileExport) => x.type === 'ExportDefaultDeclaration'
+const getFromPath = (fileName: string, fromPath?: string) => {
+  return `from '${fromPath || `./${fileName}`}'`;
+};
+
+const importTemplate = (fileExports: FileExport[], fileName: string) => {
+  const res = fileExports.reduce(
+    (acc: any, curr: any, index: number, arr: FileExport[]) => {
+      if (curr.type === 'ExportDefaultDeclaration') {
+        return {
+          exportString: `import ${curr.name}, `,
+          defaultExport: [curr.name],
+          namedExports: []
+        };
+      } else if (curr.type === 'ExportNamedDeclaration') {
+        const addOpenBracket = acc.namedExports.length === 0;
+        const addCloseBracket = index === arr.length - 1;
+        const val = `${addOpenBracket ? '{' : ''} ${curr.name}, ${
+          addCloseBracket ? '}' : ''
+        }`;
+        return {
+          exportString: `${acc.exportString} ${val}`,
+          defaultExport: acc.defaultExport,
+          namedExports: [...acc.namedExports, curr.name]
+        };
+      }
+    },
+    {
+      exportString: 'import ',
+      defaultExport: [],
+      namedExports: []
+    }
   );
 
-  const namedExports = fileExports.filter(
-    (x: FileExport) => x.type === 'ExportNamedDeclaration'
-  );
-
-  const namedExportString =
-
-  if (hasDefaultExport) {
-    console.log('we have a default export');
-  }
-  return `
-  `;
+  return `${res!.exportString} ${getFromPath(fileName)}`;
 };
 
 export const typescriptJSX = (fileExports: FileExport[], fileName: string) => {
-  const arr = fileExports.map((x: FileExport) => {
-    return testTemplate(x);
-  });
-
-  return arr;
+  const sortedWithDefaultFirst = [
+    ...fileExports
+  ].sort((a: FileExport, b: FileExport) =>
+    a.type === 'ExportDefaultDeclaration' ? -1 : 1
+  );
+  const importStatement = importTemplate(sortedWithDefaultFirst, fileName);
+  const tests = sortedWithDefaultFirst.map((x: FileExport) => testTemplate(x));
+  const res = `
+    ${importStatement} 
+    ${tests.join('\n')}
+  `;
+  console.log({ res });
+  return res;
 };
