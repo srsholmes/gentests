@@ -103,8 +103,8 @@ export const parseFile = ({
 
     traverse(parsedCode, {
       enter(path) {
-        if (path.isIdentifier({ name: 'divide' })) {
-          console.log('I FOUND DIVIDE');
+        if (path.isIdentifier({ type: 'JSXElement' })) {
+          console.log('I FOUND A COMPONENT');
         }
       }
     });
