@@ -12,9 +12,15 @@ const getFromPath = (fileName: string, fromPath?: string) => {
   return `from '${fromPath || `./${fileName}`}'`;
 };
 
+interface Accum {
+  exportString: string;
+  defaultExport: string[];
+  namedExports: string[];
+}
+
 const importTemplate = (fileExports: FileExport[], fileName: string) => {
   const res = fileExports.reduce(
-    (acc: any, curr: any, index: number, arr: FileExport[]) => {
+    (acc: Accum, curr: FileExport, index: number, arr: FileExport[]) => {
       if (curr.type === 'ExportDefaultDeclaration') {
         return {
           exportString: `import ${curr.name}, `,
@@ -22,6 +28,7 @@ const importTemplate = (fileExports: FileExport[], fileName: string) => {
           namedExports: []
         };
       } else if (curr.type === 'ExportNamedDeclaration') {
+        // TODO: Check here to see if there is a default export, if there wasnt, there will be no 'import' on the begining of exportString
         const addOpenBracket = acc.namedExports.length === 0;
         const addCloseBracket = index === arr.length - 1;
         const val = `${addOpenBracket ? '{' : ''} ${curr.name}, ${
@@ -33,6 +40,8 @@ const importTemplate = (fileExports: FileExport[], fileName: string) => {
           namedExports: [...acc.namedExports, curr.name]
         };
       }
+
+      return acc;
     },
     {
       exportString: 'import ',
@@ -41,7 +50,7 @@ const importTemplate = (fileExports: FileExport[], fileName: string) => {
     }
   );
 
-  return `${res!.exportString} ${getFromPath(fileName)}`;
+  return `${res.exportString} ${getFromPath(fileName)}`;
 };
 
 export const typescriptJSX = (fileExports: FileExport[], fileName: string) => {
