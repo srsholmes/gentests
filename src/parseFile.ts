@@ -23,12 +23,6 @@ const getNamedExport = (node: any) => {
   }
   if (node.declaration && node.declaration.declarations) {
     return node.declaration.declarations.map((declaration: any) => {
-      console.log('LOL');
-      console.log({ declaration });
-      console.log('AAAAAAAAAAAAAA');
-      console.log(declaration.init.params);
-      console.log('BBBBBBBBBBBBB');
-      console.log(declaration.init.params[0].typeAnnotation.type);
       return {
         type: node.type,
         declarationType: declaration.id.type,

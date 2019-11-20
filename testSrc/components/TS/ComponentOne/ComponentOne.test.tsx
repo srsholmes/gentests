@@ -1,7 +1,9 @@
 import { ComponentOne } from "./ComponentOne";
 
-describe("ComponentOne ", () => {
-  it("should fail the automatically generated test", () => {
-    expect(true).toBe(false);
+describe("ComponentOne", () => {
+  it("ComponentOne should fail the automatically generated test", () => {
+    const actual = ComponentOne();
+    const expected = null;
+    expect(actual).toBe(expected);
   });
 });
