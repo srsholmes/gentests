@@ -27,19 +27,41 @@ export const parseFile = ({
       sourceType: 'module',
       plugins: getPlugins(fileContents, fileExtension)
     });
-    const arr = parsedCode.program.body.map((node: Statement) => {
-      if (node.type === 'ExportDefaultDeclaration') {
-        return {
-          type: node.type,
-          name: getDefaultName(node, fileName),
-          jsx: testIfNodeIsJSX(node)
-        };
+    const arr = parsedCode.program.body.map(
+      (node: Statement, i: number, arr: any[]) => {
+        if (node.type === 'ExportDefaultDeclaration') {
+          const actualDeclaration = arr.find((x: any) => {
+            if (x.id) {
+              const nameOfDefaultExport = getDefaultName(node);
+              return x.id.name === nameOfDefaultExport;
+            }
+            return null;
+          });
+          console.log({ actualDeclaration });
+          if (actualDeclaration) {
+            console.log({
+              type: actualDeclaration.type,
+              name: actualDeclaration.id.name,
+              jsx: testIfNodeIsJSX(actualDeclaration)
+            });
+            return {
+              type: actualDeclaration.type,
+              name: actualDeclaration.id.name,
+              jsx: testIfNodeIsJSX(actualDeclaration)
+            };
+          }
+          return {
+            type: node.type,
+            name: getDefaultName(node, fileName),
+            jsx: testIfNodeIsJSX(node)
+          };
+        }
+        if (node.type === 'ExportNamedDeclaration') {
+          return getNamedExport(node);
+        }
+        return null;
       }
-      if (node.type === 'ExportNamedDeclaration') {
-        return getNamedExport(node);
-      }
-      return null;
-    });
+    );
 
     return {
       fileExports: flatten(arr).filter(Boolean)

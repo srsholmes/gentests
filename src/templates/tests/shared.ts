@@ -1,6 +1,6 @@
 import { FileExport } from '../../types';
 import { ParserPlugin } from '@babel/parser';
-import { isJSXIdentifier, traverse } from '@babel/types';
+import { isJSX, traverse } from '@babel/types';
 
 export const getFromPath = (fileName: string, fromPath?: string) => {
   return `from '${fromPath || `./${fileName}`}'`;
@@ -10,10 +10,9 @@ export const testIfNodeIsJSX = (node: any) => {
   let jsxDetected = false;
   traverse(node, {
     enter(path) {
-      console.log('enter', path);
-      if (isJSXIdentifier(path)) {
-        console.log('This is JSX');
+      if (isJSX(path)) {
         jsxDetected = true;
+        return false;
       }
     }
   });
@@ -36,14 +35,17 @@ export const importTemplate = (fileExports: FileExport[], fileName: string) => {
     (acc: Accum, curr: FileExport, index: number, arr: FileExport[]) => {
       if (curr.type === 'ExportDefaultDeclaration') {
         return {
-          exportString: `import ${curr.name}, `,
+          exportString: `import ${curr.name} ,`,
           defaultExport: [curr.name],
           namedExports: []
         };
       } else if (curr.type === 'ExportNamedDeclaration') {
+        const needACommaAfterDefaultExport = acc.defaultExport.length > 0;
         const addOpenBracket = acc.namedExports.length === 0;
         const addCloseBracket = index === arr.length - 1;
+        // TODO: Fix this when there is not a default export.
         const val = `
+          // ${needACommaAfterDefaultExport ? ',' : ''}
           ${addOpenBracket ? '{' : ''} 
           ${curr.name}, 
           ${addCloseBracket ? '}' : ''}
@@ -71,7 +73,7 @@ export function flatten(arr: any[]) {
   return [].concat(...arr);
 }
 
-export const getDefaultName = (node: any, fileName: string) => {
+export const getDefaultName = (node: any, fileName?: string) => {
   if (node.declaration) {
     if (node.declaration.id) {
       return node.declaration.id.name;
@@ -85,9 +87,7 @@ export const getNamedExport = (
   node: any
 ): FileExport | FileExport[] | undefined => {
   const isJSX = testIfNodeIsJSX(node);
-  console.log({ isJSX });
   if (node.declaration && node.declaration.id) {
-    console.log(1);
     return {
       type: node.type,
       declarationType: node.declaration.id.type,
@@ -96,7 +96,6 @@ export const getNamedExport = (
     };
   }
   if (node.declaration && node.declaration.declarations) {
-    console.log(2);
     return node.declaration.declarations.map((declaration: any) => {
       return {
         type: node.type,
@@ -107,7 +106,6 @@ export const getNamedExport = (
     });
   }
   if (node.specifiers && node.specifiers.length >= 1) {
-    console.log(3);
     return node.specifiers.map((specifier: any) => {
       return {
         type: node.type,

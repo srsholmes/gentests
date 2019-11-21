@@ -15,11 +15,12 @@ const testTemplate = ({ name, jsx }: FileExport) => `
 export const typescriptJSX = (fileExports: FileExport[], fileName: string) => {
   const sortedWithDefaultFirst = sortExports(fileExports);
   const importStatement = importTemplate(sortedWithDefaultFirst, fileName);
-  console.log({ sortedWithDefaultFirst });
   const tests = sortedWithDefaultFirst.map((x: FileExport) => testTemplate(x));
   const res = `
     ${importStatement} 
     ${tests.join('\n')}
   `;
+
+  console.log({ res });
   return res;
 };
