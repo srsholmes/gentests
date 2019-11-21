@@ -1,14 +1,23 @@
 import { FileExport } from '../../types';
 import { ParserPlugin } from '@babel/parser';
+import { isJSXIdentifier, traverse } from '@babel/types';
 
 export const getFromPath = (fileName: string, fromPath?: string) => {
   return `from '${fromPath || `./${fileName}`}'`;
 };
 
 export const testIfNodeIsJSX = (node: any) => {
-  console.log('tesFile For JSX');
-  console.log({ node });
-  return true;
+  let jsxDetected = false;
+  traverse(node, {
+    enter(path) {
+      console.log('enter', path);
+      if (isJSXIdentifier(path)) {
+        console.log('This is JSX');
+        jsxDetected = true;
+      }
+    }
+  });
+  return jsxDetected;
 };
 
 export const sortExports = (arr: FileExport[]) =>
@@ -23,7 +32,6 @@ interface Accum {
 }
 
 export const importTemplate = (fileExports: FileExport[], fileName: string) => {
-  console.log({ fileExports })
   const res = fileExports.reduce(
     (acc: Accum, curr: FileExport, index: number, arr: FileExport[]) => {
       if (curr.type === 'ExportDefaultDeclaration') {
@@ -72,10 +80,14 @@ export const getDefaultName = (node: any, fileName: string) => {
   }
   return fileName;
 };
-export const getNamedExport = (node: any) => {
-  console.log({ node });
+
+export const getNamedExport = (
+  node: any
+): FileExport | FileExport[] | undefined => {
+  const isJSX = testIfNodeIsJSX(node);
+  console.log({ isJSX });
   if (node.declaration && node.declaration.id) {
-    const isJSX = testIfNodeIsJSX(node);
+    console.log(1);
     return {
       type: node.type,
       declarationType: node.declaration.id.type,
@@ -84,8 +96,8 @@ export const getNamedExport = (node: any) => {
     };
   }
   if (node.declaration && node.declaration.declarations) {
+    console.log(2);
     return node.declaration.declarations.map((declaration: any) => {
-      const isJSX = testIfNodeIsJSX(declaration);
       return {
         type: node.type,
         declarationType: declaration.id.type,
@@ -95,8 +107,8 @@ export const getNamedExport = (node: any) => {
     });
   }
   if (node.specifiers && node.specifiers.length >= 1) {
+    console.log(3);
     return node.specifiers.map((specifier: any) => {
-      const isJSX = testIfNodeIsJSX(specifier);
       return {
         type: node.type,
         declarationType: specifier.exported.type,

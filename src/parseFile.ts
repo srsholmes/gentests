@@ -5,7 +5,8 @@ import {
   flatten,
   getDefaultName,
   getNamedExport,
-  getPlugins, testIfNodeIsJSX,
+  getPlugins,
+  testIfNodeIsJSX,
   ValidFileExtensions
 } from './templates/tests/shared';
 
@@ -38,14 +39,6 @@ export const parseFile = ({
         return getNamedExport(node);
       }
       return null;
-    });
-
-    traverse(parsedCode, {
-      enter(path) {
-        if (path.isIdentifier({ type: 'JSXElement' })) {
-          console.log('I FOUND A COMPONENT');
-        }
-      }
     });
 
     return {
