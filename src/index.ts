@@ -1,8 +1,9 @@
-import { parseFile, ValidFileExtensions } from './parseFile';
+import { parseFile} from './parseFile';
 import { existsSync, promises, readFileSync } from 'fs';
 import { getDirectoriesAndComponents } from './getFiles';
 import { generateTest } from './generateTest';
 import { join } from 'path';
+import { ValidFileExtensions } from './templates/tests/shared';
 
 (async () => {
   const res = await getDirectoriesAndComponents();

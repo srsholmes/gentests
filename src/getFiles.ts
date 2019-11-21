@@ -24,8 +24,9 @@ const IGNORED_COMPONENTS: string[] = [
 export const getDirectoriesAndComponents = async (ignored: string[] = []) =>
   fg(
     [
-      join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
-      join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
+      join(process.cwd(), '**/components/JS/ComponentTwo/*.{ts,tsx,js,jsx}'),
+      // join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
+      // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
     ],
     {
       ignore: [...DEFAULT_IGNORED, ...ignored]

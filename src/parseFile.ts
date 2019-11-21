@@ -1,71 +1,15 @@
-import { parse, ParserPlugin } from '@babel/parser';
+import { parse } from '@babel/parser';
 import { Statement } from '@babel/types';
 import traverse from '@babel/traverse';
+import {
+  flatten,
+  getDefaultName,
+  getNamedExport,
+  getPlugins, testIfNodeIsJSX,
+  ValidFileExtensions
+} from './templates/tests/shared';
 
-const getDefaultName = (node: any, fileName: string) => {
-  if (node.declaration) {
-    if (node.declaration.id) {
-      return node.declaration.id.name;
-    }
-    return node.declaration.name || fileName;
-  }
-  return fileName;
-};
-
-const getNamedExport = (node: any) => {
-  console.log({ node });
-  if (node.declaration && node.declaration.id) {
-    return {
-      type: node.type,
-      declarationType: node.declaration.id.type,
-      name: node.declaration.id.name
-    };
-  }
-  if (node.declaration && node.declaration.declarations) {
-    return node.declaration.declarations.map((declaration: any) => {
-      return {
-        type: node.type,
-        declarationType: declaration.id.type,
-        name: declaration.id.name
-      };
-    });
-  }
-  if (node.specifiers && node.specifiers.length >= 1) {
-    return node.specifiers.map((specifier: any) => {
-      return {
-        type: node.type,
-        declarationType: specifier.exported.type,
-        name: specifier.exported.name
-      };
-    });
-  }
-};
-
-function flatten(arr: any[]) {
-  return [].concat(...arr);
-}
-
-const flowComments = ['// @flow', '/* @flow */'];
-const getPlugins = (
-  fileContents: string,
-  fileExtension: ValidFileExtensions
-) => {
-  console.log({ fileExtension });
-  if (fileExtension === '.ts' || fileExtension === '.tsx') {
-    return ['typescript', 'jsx'] as ParserPlugin[];
-  }
-
-  // TODO: FLow support
-  // if (
-  //   fileExtension === 'js' &&
-  //   flowComments.some((x: string) => fileContents.includes(x))
-  // ) {
-  //   return ['flow'];
-  // }
-  return ['jsx'] as ParserPlugin[];
-};
-
-export type ValidFileExtensions = '.tsx' | '.ts' | '.js' | '.jsx';
+const JSXTYpe = 'JSXElement';
 
 type ParseFileArgs = {
   fileContents: string;
@@ -86,7 +30,8 @@ export const parseFile = ({
       if (node.type === 'ExportDefaultDeclaration') {
         return {
           type: node.type,
-          name: getDefaultName(node, fileName)
+          name: getDefaultName(node, fileName),
+          jsx: testIfNodeIsJSX(node)
         };
       }
       if (node.type === 'ExportNamedDeclaration') {
