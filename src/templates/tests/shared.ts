@@ -35,20 +35,19 @@ export const importTemplate = (fileExports: FileExport[], fileName: string) => {
     (acc: Accum, curr: FileExport, index: number, arr: FileExport[]) => {
       if (curr.type === 'ExportDefaultDeclaration') {
         return {
-          exportString: `import ${curr.name} ,`,
+          exportString: `import ${curr.name}`,
           defaultExport: [curr.name],
           namedExports: []
         };
       } else if (curr.type === 'ExportNamedDeclaration') {
-        const needACommaAfterDefaultExport = acc.defaultExport.length > 0;
+        const needACommaAfterDefaultExport =
+          acc.defaultExport.length > 0 && index === 1;
         const addOpenBracket = acc.namedExports.length === 0;
         const addCloseBracket = index === arr.length - 1;
-        // TODO: Fix this when there is not a default export.
         const val = `
-          // ${needACommaAfterDefaultExport ? ',' : ''}
-          ${addOpenBracket ? '{' : ''} 
-          ${curr.name}, 
-          ${addCloseBracket ? '}' : ''}
+          ${needACommaAfterDefaultExport ? ',' : ''} ${
+          addOpenBracket ? '{' : ''
+        } ${curr.name}, ${addCloseBracket ? '}' : ''}
         `;
         return {
           exportString: `${acc.exportString} ${val}`,
@@ -66,7 +65,7 @@ export const importTemplate = (fileExports: FileExport[], fileName: string) => {
     }
   );
 
-  return `${res.exportString} ${getFromPath(fileName)}`;
+  return `${res.exportString.trim()} ${getFromPath(fileName)}`;
 };
 
 export function flatten(arr: any[]) {

@@ -37,15 +37,9 @@ export const parseFile = ({
             }
             return null;
           });
-          console.log({ actualDeclaration });
           if (actualDeclaration) {
-            console.log({
-              type: actualDeclaration.type,
-              name: actualDeclaration.id.name,
-              jsx: testIfNodeIsJSX(actualDeclaration)
-            });
             return {
-              type: actualDeclaration.type,
+              type: 'ExportDefaultDeclaration',
               name: actualDeclaration.id.name,
               jsx: testIfNodeIsJSX(actualDeclaration)
             };

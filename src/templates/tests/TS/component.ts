@@ -15,6 +15,8 @@ const testTemplate = ({ name, jsx }: FileExport) => `
 export const typescriptJSX = (fileExports: FileExport[], fileName: string) => {
   const sortedWithDefaultFirst = sortExports(fileExports);
   const importStatement = importTemplate(sortedWithDefaultFirst, fileName);
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!')
+  console.log(importStatement);
   const tests = sortedWithDefaultFirst.map((x: FileExport) => testTemplate(x));
   const res = `
     ${importStatement} 

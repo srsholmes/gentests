@@ -1,20 +1,13 @@
 import classExample, {
-  // ,
   hello,
-
-  // ,
   helloComponent,
-
-  // ,
   helloComponent2,
-
-  // ,
   classExample2
 } from "./ComponentThree";
 
 describe("classExample", () => {
   it("classExample should fail the automatically generated test", () => {
-    const actual = classExample();
+    const actual = <classExample />;
     const expected = null;
     expect(actual).toBe(expected);
   });
