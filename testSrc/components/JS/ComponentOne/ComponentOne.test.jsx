@@ -10,15 +10,15 @@ describe("defFunction", () => {
 
 describe("ComponentOne", () => {
   it("ComponentOne should fail the automatically generated test", () => {
-    const actual = ComponentOne();
+    const actual = <ComponentOne />;
     const expected = null;
     expect(actual).toBe(expected);
   });
 });
 
 describe("ComponentTwo", () => {
-  it("ComponentFour should fail the automatically generated test", () => {
-    const actual = ComponentTwo();
+  it("ComponentTwo should fail the automatically generated test", () => {
+    const actual = <ComponentTwo />;
     const expected = null;
     expect(actual).toBe(expected);
   });
