@@ -25,7 +25,7 @@ export const getDirectoriesAndComponents = async (ignored: string[] = []) =>
   fg(
     [
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),
-      // join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
+      join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
       join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
     ],
     {
