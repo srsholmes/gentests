@@ -1,8 +1,7 @@
-import { FileExport } from './types';
+import { FileExport, ValidFileExtensions } from './types';
 import { typescriptJSX } from './templates/tests/TS/component';
 import { typeScriptFile } from './templates/tests/TS/file';
 import prettier from 'prettier';
-import { ValidFileExtensions } from './templates/tests/shared';
 
 export const generateTest = (
   fileExports: FileExport[],

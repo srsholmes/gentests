@@ -1,22 +1,14 @@
 import { parse } from '@babel/parser';
 import { Statement } from '@babel/types';
-import traverse from '@babel/traverse';
 import {
-  flatten,
   getDefaultName,
   getNamedExport,
-  getPlugins,
-  testIfNodeIsJSX,
-  ValidFileExtensions
+  getPlugins
 } from './templates/tests/shared';
+import { ParseFileArgs } from './types';
+import { flatten, testIfNodeIsJSX } from './utils';
 
-const JSXTYpe = 'JSXElement';
 
-type ParseFileArgs = {
-  fileContents: string;
-  fileName: string;
-  fileExtension: ValidFileExtensions;
-};
 export const parseFile = ({
   fileContents,
   fileName,
@@ -30,13 +22,9 @@ export const parseFile = ({
     const arr = parsedCode.program.body.map(
       (node: Statement, i: number, arr: any[]) => {
         if (node.type === 'ExportDefaultDeclaration') {
-          const actualDeclaration = arr.find((x: any) => {
-            if (x.id) {
-              const nameOfDefaultExport = getDefaultName(node);
-              return x.id.name === nameOfDefaultExport;
-            }
-            return null;
-          });
+          const actualDeclaration = arr.find(
+            (x: any) => x.id && x.id.name === getDefaultName(node)
+          );
           if (actualDeclaration) {
             return {
               type: 'ExportDefaultDeclaration',

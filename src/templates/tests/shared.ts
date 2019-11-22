@@ -1,28 +1,10 @@
-import { FileExport } from '../../types';
+import { FileExport, ValidFileExtensions } from '../../types';
 import { ParserPlugin } from '@babel/parser';
-import { isJSX, traverse } from '@babel/types';
+import { testIfNodeIsJSX } from '../../utils';
 
 export const getFromPath = (fileName: string, fromPath?: string) => {
   return `from '${fromPath || `./${fileName}`}'`;
 };
-
-export const testIfNodeIsJSX = (node: any) => {
-  let jsxDetected = false;
-  traverse(node, {
-    enter(path) {
-      if (isJSX(path)) {
-        jsxDetected = true;
-        return false;
-      }
-    }
-  });
-  return jsxDetected;
-};
-
-export const sortExports = (arr: FileExport[]) =>
-  [...arr].sort((a: FileExport, b: FileExport) =>
-    a.type === 'ExportDefaultDeclaration' ? -1 : 1
-  );
 
 interface Accum {
   exportString: string;
@@ -68,10 +50,6 @@ export const importTemplate = (fileExports: FileExport[], fileName: string) => {
   return `${res.exportString.trim()} ${getFromPath(fileName)}`;
 };
 
-export function flatten(arr: any[]) {
-  return [].concat(...arr);
-}
-
 export const getDefaultName = (node: any, fileName?: string) => {
   if (node.declaration) {
     if (node.declaration.id) {
@@ -115,7 +93,6 @@ export const getNamedExport = (
     });
   }
 };
-const flowComments = ['// @flow', '/* @flow */'];
 export const getPlugins = (
   fileContents: string,
   fileExtension: ValidFileExtensions
@@ -134,4 +111,3 @@ export const getPlugins = (
   // }
   return ['jsx'] as ParserPlugin[];
 };
-export type ValidFileExtensions = '.tsx' | '.ts' | '.js' | '.jsx';

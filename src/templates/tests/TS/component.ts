@@ -1,5 +1,6 @@
-import { importTemplate, sortExports } from '../shared';
+import { importTemplate} from '../shared';
 import { FileExport } from '../../../types';
+import { sortExports } from '../../../utils';
 
 //TODO: Make this a component test
 const testTemplate = ({ name, jsx }: FileExport) => `
