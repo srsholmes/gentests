@@ -20,7 +20,7 @@ const IGNORED_COMPONENTS: string[] = [
   // '**/components/Component/Component.tsx'
 ];
 
-// TODO: Make the path dymanic with a user input.
+// TODO: Make the path dynamic with a user input.
 export const getDirectoriesAndComponents = async (ignored: string[] = []) =>
   fg(
     [
