@@ -7,7 +7,7 @@ import classExample, {
 
 describe("classExample", () => {
   it("classExample should fail the automatically generated test", () => {
-    const actual = <classExample />;
+    const actual = render(<classExample />);
     const expected = null;
     expect(actual).toBe(expected);
   });
@@ -23,7 +23,7 @@ describe("hello", () => {
 
 describe("helloComponent", () => {
   it("helloComponent should fail the automatically generated test", () => {
-    const actual = <helloComponent />;
+    const actual = render(<helloComponent />);
     const expected = null;
     expect(actual).toBe(expected);
   });
@@ -31,7 +31,7 @@ describe("helloComponent", () => {
 
 describe("helloComponent2", () => {
   it("helloComponent2 should fail the automatically generated test", () => {
-    const actual = <helloComponent2 />;
+    const actual = render(<helloComponent2 />);
     const expected = null;
     expect(actual).toBe(expected);
   });
@@ -39,7 +39,7 @@ describe("helloComponent2", () => {
 
 describe("classExample2", () => {
   it("classExample2 should fail the automatically generated test", () => {
-    const actual = <classExample2 />;
+    const actual = render(<classExample2 />);
     const expected = null;
     expect(actual).toBe(expected);
   });

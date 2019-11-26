@@ -7,6 +7,9 @@ import hello, {
   exportDivide
 } from "./one";
 
+import test from "tape";
+import { render } from "@testing-library/react";
+
 describe("hello", () => {
   it("hello should fail the automatically generated test", () => {
     const actual = hello();

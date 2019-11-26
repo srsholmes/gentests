@@ -1,6 +1,6 @@
 import { FileExport, GenerateTestArgs } from '../../../types';
 import { sortExports } from '../../../utils';
-import { importTemplate } from '../utils/importTemplate';
+import { getImportStatement } from '../utils/getImportStatement';
 
 const testTemplate = ({ name }: { name: string }) => `
   describe('${name}', () => {
@@ -15,7 +15,7 @@ const testTemplate = ({ name }: { name: string }) => `
 export const typeScriptFile = (args: GenerateTestArgs) => {
   const { fileExports } = args;
   const sortedWithDefaultFirst = sortExports(fileExports);
-  const importStatement = importTemplate({
+  const importStatement = getImportStatement({
     ...args,
     fileExports: sortedWithDefaultFirst
   });

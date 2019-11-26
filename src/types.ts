@@ -6,7 +6,7 @@ export interface FileExport {
 }
 
 export type ValidFileExtensions = '.tsx' | '.ts' | '.js' | '.jsx';
-type SupportedTestFrameWorks = 'jest' | 'tape' | 'ava';
+export type SupportedTestFrameWorks = 'jest' | 'tape' | 'ava';
 
 export interface ParseFileArgs {
   fileContents: string;
@@ -14,7 +14,7 @@ export interface ParseFileArgs {
   fileExtension: ValidFileExtensions;
 }
 
-type SupportedComponentTestFrameWorks =
+export type SupportedComponentTestFrameWorks =
   | 'react-testing-library'
   | 'enzyme'
   | 'react-test-renderer';

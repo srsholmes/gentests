@@ -8,7 +8,7 @@ import { defaultConfig } from './config';
 
 (async () => {
   const userConfig: Partial<Config> = {
-    testFramework: 'jest',
+    testFramework: 'tape',
     testComponentFramework: 'react-testing-library'
   };
 

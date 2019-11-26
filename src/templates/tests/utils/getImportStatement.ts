@@ -1,5 +1,6 @@
-import { Config, FileExport, GenerateTestArgs } from '../../../types';
+import { FileExport, GenerateTestArgs } from '../../../types';
 import { getFromPath } from './getFromPath';
+import { getFrameworkImports } from './importTemplates';
 
 export interface Accum {
   exportString: string;
@@ -7,11 +8,7 @@ export interface Accum {
   namedExports: string[];
 }
 
-const getFrameworkImports = (config: Config) => {
-  return ``
-}
-
-export const importTemplate = (args: GenerateTestArgs) => {
+export const getImportStatement = (args: GenerateTestArgs) => {
   const { fileExports, fileName, config } = args;
   const res = fileExports.reduce(
     (acc: Accum, curr: FileExport, index: number, arr: FileExport[]) => {
