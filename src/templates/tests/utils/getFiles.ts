@@ -1,6 +1,6 @@
 import { join, parse } from 'path';
 import fg from 'fast-glob';
-import { Config } from './types';
+import { Config } from '../../../types';
 
 const DEFAULT_IGNORED = [
   '**/components/**/*.stories.tsx',
@@ -13,7 +13,10 @@ const DEFAULT_IGNORED = [
   '**/components/**/__mocks__/*.js',
   '**/components/**/__mocks__/*.jsx',
   '**/components/**/__mocks__/*.ts',
-  '**/node_modules/**/*'
+  '**/node_modules/**/*',
+  // TODO: Remove these from published module
+  '**/src/**/*',
+  '**/lib/**/*'
 ];
 
 const IGNORED_COMPONENTS: string[] = [
@@ -23,6 +26,7 @@ const IGNORED_COMPONENTS: string[] = [
 
 export const getDirectoriesAndComponents = async (config: Config) => {
   const { ignored } = config;
+  console.log(process.cwd());
   return fg(
     [
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),

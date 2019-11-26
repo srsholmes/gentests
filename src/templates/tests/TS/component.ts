@@ -1,4 +1,4 @@
-import { Config, FileExport, generateTestArgs } from '../../../types';
+import { Config, FileExport, GenerateTestArgs } from '../../../types';
 import { sortExports } from '../../../utils';
 import { importTemplate } from '../utils/importTemplate';
 
@@ -37,10 +37,13 @@ const getTestTemplate = (fileExport: FileExport, config: Config) => {
   }
 };
 
-export const typescriptJSX = (args: generateTestArgs) => {
-  const { fileExports, fileName, config } = args;
+export const typescriptJSX = (args: GenerateTestArgs) => {
+  const { fileExports, config } = args;
   const sortedWithDefaultFirst = sortExports(fileExports);
-  const importStatement = importTemplate(sortedWithDefaultFirst, fileName);
+  const importStatement = importTemplate({
+    ...args,
+    fileExports: sortedWithDefaultFirst
+  });
   const tests = sortedWithDefaultFirst.map((x: FileExport) =>
     getTestTemplate(x, config)
   );

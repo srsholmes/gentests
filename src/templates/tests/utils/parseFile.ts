@@ -1,10 +1,12 @@
 import { parse } from '@babel/parser';
 import { Statement } from '@babel/types';
-import { ParseFileArgs } from './types';
-import { flatten, testIfNodeIsJSX } from './utils';
-import { getDefaultName, getNamedExport } from './templates/tests/utils/getExportNames';
-import { getPlugins } from './templates/tests/utils/getPlugins';
-
+import { ParseFileArgs } from '../../../types';
+import { flatten, testIfNodeIsJSX } from '../../../utils';
+import {
+  getDefaultName,
+  getNamedExport
+} from './getExportNames';
+import { getPlugins } from './getPlugins';
 
 export const parseFile = ({
   fileContents,

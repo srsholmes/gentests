@@ -1,9 +1,9 @@
-import { generateTestArgs } from './types';
-import { typescriptJSX } from './templates/tests/TS/component';
-import { typeScriptFile } from './templates/tests/TS/file';
+import { GenerateTestArgs } from '../../../types';
+import { typescriptJSX } from '../TS/component';
+import { typeScriptFile } from '../TS/file';
 import prettier from 'prettier';
 
-export const generateTest = (args: generateTestArgs) => {
+export const generateTest = (args: GenerateTestArgs) => {
   const { ext } = args;
   switch (ext) {
     case '.jsx':

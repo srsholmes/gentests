@@ -1,7 +1,7 @@
-import { parseFile } from './parseFile';
+import { parseFile } from './templates/tests/utils/parseFile';
 import { existsSync, promises, readFileSync } from 'fs';
-import { getDirectoriesAndComponents } from './getFiles';
-import { generateTest } from './generateTest';
+import { getDirectoriesAndComponents } from './templates/tests/utils/getFiles';
+import { generateTest } from './templates/tests/utils/generateTest';
 import { join } from 'path';
 import { Config, ValidFileExtensions } from './types';
 import { defaultConfig } from './config';
