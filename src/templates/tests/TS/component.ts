@@ -3,7 +3,7 @@ import { sortExports } from '../../../utils';
 import { getImportStatement } from '../utils/getImportStatement';
 import {
   enzymeTemplate,
-  reacteTestRendererTemplate,
+  reactTestRendererTemplate,
   reactTestingLibraryTemplate,
   testTemplate
 } from '../utils/testTemplates';
@@ -17,7 +17,7 @@ const getTestTemplate = (fileExport: FileExport, config: Config) => {
       return enzymeTemplate(fileExport);
     }
     case 'react-test-renderer': {
-      return reacteTestRendererTemplate(fileExport);
+      return reactTestRendererTemplate(fileExport);
     }
     default: {
       return testTemplate(fileExport);

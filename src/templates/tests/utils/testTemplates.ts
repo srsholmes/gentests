@@ -27,26 +27,24 @@ export const enzymeTemplate = ({ name, jsx }: FileExport) => {
       const actual = ${jsx ? `shallow(<${name}/>)` : `${name}()`};
       ${expectation}    
     });
-  });
  `;
 };
 
-export const reacteTestRendererTemplate = ({ name, jsx }: FileExport) => {
+export const reactTestRendererTemplate = ({ name, jsx }: FileExport) => {
   return `
     ${getDescribeStatement(name)}      
       const actual = ${jsx ? `create(<${name}/>)` : `${name}()`};
       ${expectation}    
     });
-  });
  `;
 };
 
 export const reactTestingLibraryTemplate = ({ name, jsx }: FileExport) => {
+  console.log('LOL')
   return `
     ${getDescribeStatement(name)}      
       const actual = ${jsx ? `render(<${name}/>)` : `${name}()`};
       ${expectation}    
     });
-  });
  `;
 };
