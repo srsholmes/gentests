@@ -1,6 +1,6 @@
 import { FileExport } from '../../../types';
-import { importTemplate} from '../shared';
 import { sortExports } from '../../../utils';
+import { importTemplate } from '../utils/shared';
 
 const testTemplate = ({ name }: { name: string }) => `
   describe('${name}', () => {

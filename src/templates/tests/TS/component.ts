@@ -1,8 +1,7 @@
-import { importTemplate} from '../shared';
+import { importTemplate} from '../utils/shared';
 import { FileExport } from '../../../types';
 import { sortExports } from '../../../utils';
 
-//TODO: Make this a component test
 const testTemplate = ({ name, jsx }: FileExport) => `
   describe('${name}', () => {
     it('${name} should fail the automatically generated test', () => {

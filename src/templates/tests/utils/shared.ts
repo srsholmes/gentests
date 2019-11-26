@@ -1,6 +1,6 @@
-import { FileExport, ValidFileExtensions } from '../../types';
+import { FileExport, ValidFileExtensions } from '../../../types';
 import { ParserPlugin } from '@babel/parser';
-import { testIfNodeIsJSX } from '../../utils';
+import { testIfNodeIsJSX } from '../../../utils';
 
 export const getFromPath = (fileName: string, fromPath?: string) => {
   return `from '${fromPath || `./${fileName}`}'`;

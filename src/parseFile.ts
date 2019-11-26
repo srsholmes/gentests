@@ -4,7 +4,7 @@ import {
   getDefaultName,
   getNamedExport,
   getPlugins
-} from './templates/tests/shared';
+} from './templates/tests/utils/shared';
 import { ParseFileArgs } from './types';
 import { flatten, testIfNodeIsJSX } from './utils';
 
