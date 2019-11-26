@@ -7,7 +7,6 @@ import { Config, ValidFileExtensions } from './types';
 import { defaultConfig } from './config';
 
 (async () => {
-
   const userConfig: Partial<Config> = {
     testFramework: 'jest',
     testComponentFramework: 'react-testing-library'
@@ -33,11 +32,12 @@ import { defaultConfig } from './config';
     });
 
     if (exportsFromFile) {
-      const testTemplate = generateTest(
-        exportsFromFile.fileExports,
-        ext as ValidFileExtensions,
-        name
-      );
+      const testTemplate = generateTest({
+        fileExports: exportsFromFile.fileExports,
+        ext: ext as ValidFileExtensions,
+        fileName: name,
+        config
+      });
 
       if (existsSync(testDir)) {
         promises.writeFile(testFile, testTemplate, 'utf8');

@@ -1,4 +1,4 @@
-import { FileExport } from '../../../types';
+import { FileExport, generateTestArgs } from '../../../types';
 import { sortExports } from '../../../utils';
 import { importTemplate } from '../utils/importTemplate';
 
@@ -12,7 +12,8 @@ const testTemplate = ({ name }: { name: string }) => `
   });
  `;
 
-export const typeScriptFile = (fileExports: FileExport[], fileName: string) => {
+export const typeScriptFile = (args: generateTestArgs) => {
+  const { fileExports, fileName } = args;
   const sortedWithDefaultFirst = sortExports(fileExports);
   const importStatement = importTemplate(sortedWithDefaultFirst, fileName);
   const tests = sortedWithDefaultFirst.map((x: FileExport) => testTemplate(x));

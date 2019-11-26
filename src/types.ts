@@ -27,3 +27,9 @@ export type Config = {
   testFramework: SupportedTestFrameWorks;
   testComponentFramework: SupportedComponentTestFrameWorks;
 };
+export type generateTestArgs = {
+  fileExports: FileExport[];
+  ext: ValidFileExtensions;
+  fileName: string;
+  config: Config;
+};
