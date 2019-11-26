@@ -1,12 +1,9 @@
 import { parse } from '@babel/parser';
 import { Statement } from '@babel/types';
-import {
-  getDefaultName,
-  getNamedExport,
-  getPlugins
-} from './templates/tests/utils/shared';
 import { ParseFileArgs } from './types';
 import { flatten, testIfNodeIsJSX } from './utils';
+import { getDefaultName, getNamedExport } from './templates/tests/utils/getExportNames';
+import { getPlugins } from './templates/tests/utils/getPlugins';
 
 
 export const parseFile = ({

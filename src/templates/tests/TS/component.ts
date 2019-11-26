@@ -1,6 +1,6 @@
-import { importTemplate} from '../utils/shared';
 import { FileExport } from '../../../types';
 import { sortExports } from '../../../utils';
+import { importTemplate } from '../utils/importTemplate';
 
 const testTemplate = ({ name, jsx }: FileExport) => `
   describe('${name}', () => {

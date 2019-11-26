@@ -1,5 +1,6 @@
 import { join, parse } from 'path';
 import fg from 'fast-glob';
+import { Config } from './types';
 
 const DEFAULT_IGNORED = [
   '**/components/**/*.stories.tsx',
@@ -20,9 +21,9 @@ const IGNORED_COMPONENTS: string[] = [
   // '**/components/Component/Component.tsx'
 ];
 
-// TODO: Make the path dynamic with a user input.
-export const getDirectoriesAndComponents = async (ignored: string[] = []) =>
-  fg(
+export const getDirectoriesAndComponents = async (config: Config) => {
+  const { ignored } = config;
+  return fg(
     [
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),
       join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
@@ -38,3 +39,4 @@ export const getDirectoriesAndComponents = async (ignored: string[] = []) =>
       return { dir, name, ext };
     });
   });
+};

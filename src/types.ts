@@ -12,3 +12,18 @@ export type ParseFileArgs = {
   fileName: string;
   fileExtension: ValidFileExtensions;
 };
+
+type SupportedComponentTestFrameWorks =
+  | 'react-testing-library'
+  | 'enzyme'
+  | 'react-test-renderer';
+
+type SupportedTestFrameWorks = 'jest' | 'tape' | 'ava';
+
+export type Config = {
+  dryRun: boolean,
+  ignored: string[];
+  included: string[];
+  testFramework: SupportedTestFrameWorks;
+  testComponentFramework: SupportedComponentTestFrameWorks;
+};
