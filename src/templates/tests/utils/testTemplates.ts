@@ -60,6 +60,5 @@ export const testTemplate = ({ name, jsx }: FileExport, config: Config) => {
       ${closingBraceIfJest}
      });
  `;
-  console.log({ test });
   return test;
 };

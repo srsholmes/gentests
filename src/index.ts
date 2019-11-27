@@ -5,13 +5,14 @@ import { generateTest } from './templates/tests/utils/generateTest';
 import { join } from 'path';
 import { Config, SupportedFileExtensions } from './types';
 import { defaultConfig } from './config';
+import { dryRunLog } from './utils';
+
+const userConfig: Partial<Config> = {
+  testComponentFramework: '@test-library/react',
+  dryRun: true
+};
 
 (async () => {
-  const userConfig: Partial<Config> = {
-    testFramework: 'tape',
-    testComponentFramework: '@test-library/react'
-  };
-
   const config = {
     ...defaultConfig,
     ...userConfig
@@ -40,8 +41,14 @@ import { defaultConfig } from './config';
       });
 
       if (existsSync(testDir)) {
+        if (config.dryRun) {
+          return dryRunLog({ testFile, testTemplate });
+        }
         promises.writeFile(testFile, testTemplate, 'utf8');
       } else {
+        if (config.dryRun) {
+          return dryRunLog({ testFile, testTemplate });
+        }
         promises
           .mkdir(testDir)
           .then(() => {

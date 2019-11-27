@@ -3,6 +3,7 @@ import { typescriptJSX } from '../TS/component';
 import { typeScriptFile } from '../TS/file';
 import prettier from 'prettier';
 
+//TODO: Read prettier config, if that exists, use that config to format the tests
 export const generateTest = (args: GenerateTestArgs) => {
   const { ext } = args;
   switch (ext) {
@@ -13,6 +14,6 @@ export const generateTest = (args: GenerateTestArgs) => {
     case '.js':
       return prettier.format(typeScriptFile(args));
     default:
-      return prettier.format(typescriptJSX(args));
+      return prettier.format(typeScriptFile(args));
   }
 };

@@ -24,3 +24,16 @@ export function flatten(arr: any[]) {
 }
 
 const flowComments = ['// @flow', '/* @flow */'];
+
+interface DryRunArgs {
+  testFile: string;
+  testTemplate: string;
+}
+
+export const dryRunLog = (args: DryRunArgs) => {
+  const { testFile, testTemplate } = args;
+  console.log(
+    `Dry run: ${testFile} would have been written with template ${testTemplate}`
+  );
+  return;
+};

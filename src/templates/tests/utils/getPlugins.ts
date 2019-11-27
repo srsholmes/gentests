@@ -5,7 +5,6 @@ export const getPlugins = (
   fileContents: string,
   fileExtension: SupportedFileExtensions
 ) => {
-  console.log({ fileExtension });
   if (fileExtension === '.ts' || fileExtension === '.tsx') {
     return ['typescript', 'jsx'] as ParserPlugin[];
   }

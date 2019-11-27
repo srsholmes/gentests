@@ -19,6 +19,5 @@ export const typescriptJSX = (args: GenerateTestArgs) => {
     ${tests.join('\n')}
   `;
 
-  console.log({ res });
   return res;
 };
