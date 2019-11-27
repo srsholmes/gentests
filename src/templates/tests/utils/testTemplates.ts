@@ -1,4 +1,8 @@
-import { FileExport } from '../../../types';
+import {
+  Config,
+  FileExport,
+  SupportedComponentTestFrameWorks
+} from '../../../types';
 
 let expectation = `
       const expected = null;
@@ -6,45 +10,32 @@ let expectation = `
      });
 `;
 
+const getFunctionForTestLib = (testLib: SupportedComponentTestFrameWorks) => {
+  switch (testLib) {
+    case 'react-test-renderer':
+      return 'create';
+    case 'enzyme':
+      return 'shallow';
+    case 'react-testing-library':
+    case '@test-library/react':
+      return 'render';
+    default:
+      return '';
+  }
+};
+
 function getDescribeStatement(name: string) {
   return `describe('${name}', () => {
     it('${name} should fail the automatically generated test', () => {
 `;
 }
 
-export const testTemplate = ({ name, jsx }: FileExport) => {
+export const testTemplate = ({ name, jsx }: FileExport, config: Config) => {
+  const fnToCall = getFunctionForTestLib(config.testComponentFramework);
   return ` 
       ${getDescribeStatement(name)}      
-      const actual = ${jsx ? `<${name}/>` : `${name}()`};
+      const actual = ${jsx ? `${fnToCall}(<${name}/>)` : `${name}()`};
       ${expectation}    
   });
- `;
-};
-
-export const enzymeTemplate = ({ name, jsx }: FileExport) => {
-  return `
-    ${getDescribeStatement(name)}      
-      const actual = ${jsx ? `shallow(<${name}/>)` : `${name}()`};
-      ${expectation}    
-    });
- `;
-};
-
-export const reactTestRendererTemplate = ({ name, jsx }: FileExport) => {
-  return `
-    ${getDescribeStatement(name)}      
-      const actual = ${jsx ? `create(<${name}/>)` : `${name}()`};
-      ${expectation}    
-    });
- `;
-};
-
-export const reactTestingLibraryTemplate = ({ name, jsx }: FileExport) => {
-  console.log('LOL')
-  return `
-    ${getDescribeStatement(name)}      
-      const actual = ${jsx ? `render(<${name}/>)` : `${name}()`};
-      ${expectation}    
-    });
  `;
 };

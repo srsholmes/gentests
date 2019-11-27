@@ -5,19 +5,20 @@ export interface FileExport {
   jsx: boolean;
 }
 
-export type ValidFileExtensions = '.tsx' | '.ts' | '.js' | '.jsx';
+export type SupportedFileExtensions = '.tsx' | '.ts' | '.js' | '.jsx';
 export type SupportedTestFrameWorks = 'jest' | 'tape' | 'ava';
 
 export interface ParseFileArgs {
   fileContents: string;
   fileName: string;
-  fileExtension: ValidFileExtensions;
+  fileExtension: SupportedFileExtensions;
 }
 
 export type SupportedComponentTestFrameWorks =
   | 'react-testing-library'
   | 'enzyme'
-  | 'react-test-renderer';
+  | 'react-test-renderer'
+  | '@test-library/react';
 
 export interface Config {
   dryRun: boolean;
@@ -29,7 +30,7 @@ export interface Config {
 
 export interface GenerateTestArgs {
   fileExports: FileExport[];
-  ext: ValidFileExtensions;
+  ext: SupportedFileExtensions;
   fileName: string;
   config: Config;
 }

@@ -1,29 +1,7 @@
-import { Config, FileExport, GenerateTestArgs } from '../../../types';
+import { FileExport, GenerateTestArgs } from '../../../types';
 import { sortExports } from '../../../utils';
 import { getImportStatement } from '../utils/getImportStatement';
-import {
-  enzymeTemplate,
-  reactTestRendererTemplate,
-  reactTestingLibraryTemplate,
-  testTemplate
-} from '../utils/testTemplates';
-
-const getTestTemplate = (fileExport: FileExport, config: Config) => {
-  switch (config.testComponentFramework) {
-    case 'react-testing-library': {
-      return reactTestingLibraryTemplate(fileExport);
-    }
-    case 'enzyme': {
-      return enzymeTemplate(fileExport);
-    }
-    case 'react-test-renderer': {
-      return reactTestRendererTemplate(fileExport);
-    }
-    default: {
-      return testTemplate(fileExport);
-    }
-  }
-};
+import { testTemplate } from '../utils/testTemplates';
 
 export const typescriptJSX = (args: GenerateTestArgs) => {
   const { fileExports, config } = args;
@@ -33,7 +11,7 @@ export const typescriptJSX = (args: GenerateTestArgs) => {
     fileExports: sortedWithDefaultFirst
   });
   const tests = sortedWithDefaultFirst.map((x: FileExport) =>
-    getTestTemplate(x, config)
+    testTemplate(x, config)
   );
 
   const res = `

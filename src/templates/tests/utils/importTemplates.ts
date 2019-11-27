@@ -9,6 +9,7 @@ const getImportForComponentFramework = (
     case 'react-test-renderer':
       return `import { create } from 'react-test-renderer'`;
     case 'react-testing-library':
+    case '@test-library/react':
       return `import {render} from '@testing-library/react'`;
     default:
       return '';
