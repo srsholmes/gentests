@@ -44,6 +44,7 @@ const userConfig: Partial<Config> = {
         if (config.dryRun) {
           return dryRunLog({ testFile, testTemplate });
         }
+        // TODO: Check if file exists here and if so log that the test already exists
         promises.writeFile(testFile, testTemplate, 'utf8');
       } else {
         if (config.dryRun) {
