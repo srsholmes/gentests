@@ -5,7 +5,7 @@ import { generateTest } from './templates/tests/utils/generateTest';
 import { join } from 'path';
 import { Config, SupportedFileExtensions } from './types';
 import { defaultConfig } from './config';
-import { dryRunLog } from './utils';
+import { dryRunLog, fileExistsLog } from './utils';
 
 const userConfig: Partial<Config> = {
   testComponentFramework: '@test-library/react',
@@ -45,6 +45,9 @@ const userConfig: Partial<Config> = {
           return dryRunLog({ testFile, testTemplate });
         }
         // TODO: Check if file exists here and if so log that the test already exists
+        if (existsSync(testFile)) {
+          return fileExistsLog({ testFile });
+        }
         promises.writeFile(testFile, testTemplate, 'utf8');
       } else {
         if (config.dryRun) {
