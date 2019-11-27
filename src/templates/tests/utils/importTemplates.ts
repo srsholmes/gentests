@@ -10,7 +10,7 @@ const getImportForComponentFramework = (
       return `import { create } from 'react-test-renderer'`;
     case 'react-testing-library':
     case '@test-library/react':
-      return `import {render} from '@testing-library/react'`;
+      return `import { render } from '@testing-library/react'`;
     default:
       return '';
   }
@@ -37,7 +37,9 @@ export const getFrameworkImports = (config: Config) => {
     }
     case 'jest':
     default: {
-      return '';
+      return `
+        ${importForComponentFrameWork}
+      `;
     }
   }
 };

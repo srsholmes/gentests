@@ -8,47 +8,32 @@ import classExample, {
 import test from "tape";
 import { render } from "@testing-library/react";
 
-describe("classExample", () => {
-  it("classExample should fail the automatically generated test", () => {
-    const actual = render(<classExample />);
-
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("classExample", async t => {
+  const actual = render(<classExample />);
+  const expected = null;
+  t.fail();
 });
 
-describe("hello", () => {
-  it("hello should fail the automatically generated test", () => {
-    const actual = hello();
-
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("hello", async t => {
+  const actual = hello();
+  const expected = null;
+  t.fail();
 });
 
-describe("helloComponent", () => {
-  it("helloComponent should fail the automatically generated test", () => {
-    const actual = render(<helloComponent />);
-
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("helloComponent", async t => {
+  const actual = render(<helloComponent />);
+  const expected = null;
+  t.fail();
 });
 
-describe("helloComponent2", () => {
-  it("helloComponent2 should fail the automatically generated test", () => {
-    const actual = render(<helloComponent2 />);
-
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("helloComponent2", async t => {
+  const actual = render(<helloComponent2 />);
+  const expected = null;
+  t.fail();
 });
 
-describe("classExample2", () => {
-  it("classExample2 should fail the automatically generated test", () => {
-    const actual = render(<classExample2 />);
-
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("classExample2", async t => {
+  const actual = render(<classExample2 />);
+  const expected = null;
+  t.fail();
 });

@@ -10,58 +10,44 @@ import hello, {
 import test from "tape";
 import { render } from "@testing-library/react";
 
-describe("hello", () => {
-  it("hello should fail the automatically generated test", () => {
-    const actual = hello();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("hello", async t => {
+  const actual = hello();
+  const expected = null;
+  t.fail();
 });
 
-describe("add", () => {
-  it("add should fail the automatically generated test", () => {
-    const actual = add();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("add", async t => {
+  const actual = add();
+  const expected = null;
+  t.fail();
 });
 
-describe("multiply", () => {
-  it("multiply should fail the automatically generated test", () => {
-    const actual = multiply();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("multiply", async t => {
+  const actual = multiply();
+  const expected = null;
+  t.fail();
 });
 
-describe("divide", () => {
-  it("divide should fail the automatically generated test", () => {
-    const actual = divide();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("divide", async t => {
+  const actual = divide();
+  const expected = null;
+  t.fail();
 });
 
-describe("exportAdd", () => {
-  it("exportAdd should fail the automatically generated test", () => {
-    const actual = exportAdd();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("exportAdd", async t => {
+  const actual = exportAdd();
+  const expected = null;
+  t.fail();
 });
 
-describe("exportMultiply", () => {
-  it("exportMultiply should fail the automatically generated test", () => {
-    const actual = exportMultiply();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("exportMultiply", async t => {
+  const actual = exportMultiply();
+  const expected = null;
+  t.fail();
 });
 
-describe("exportDivide", () => {
-  it("exportDivide should fail the automatically generated test", () => {
-    const actual = exportDivide();
-    const expected = null;
-    expect(actual).toBe(expected);
-  });
+test("exportDivide", async t => {
+  const actual = exportDivide();
+  const expected = null;
+  t.fail();
 });
