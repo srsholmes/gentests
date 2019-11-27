@@ -2,21 +2,13 @@ import { parse } from '@babel/parser';
 import { Statement } from '@babel/types';
 import { ParseFileArgs } from '../../../types';
 import { flatten, testIfNodeIsJSX } from '../../../utils';
-import {
-  getDefaultName,
-  getNamedExport
-} from './getExportNames';
-import { getPlugins } from './getPlugins';
+import { getDefaultName, getNamedExport } from './getExportNames';
 
-export const parseFile = ({
-  fileContents,
-  fileName,
-  fileExtension
-}: ParseFileArgs) => {
+export const parseFile = ({ fileContents, fileName }: ParseFileArgs) => {
   try {
     const parsedCode = parse(fileContents, {
       sourceType: 'module',
-      plugins: getPlugins(fileContents, fileExtension)
+      plugins: ['typescript', 'jsx']
     });
     const arr = parsedCode.program.body.map(
       (node: Statement, i: number, arr: any[]) => {

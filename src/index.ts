@@ -6,6 +6,7 @@ import { join } from 'path';
 import { Config, SupportedFileExtensions } from './types';
 import { defaultConfig } from './config';
 import { dryRunLog, fileExistsLog } from './utils';
+import chalk from 'chalk';
 
 const userConfig: Partial<Config> = {
   testComponentFramework: '@test-library/react',
@@ -44,11 +45,11 @@ const userConfig: Partial<Config> = {
         if (config.dryRun) {
           return dryRunLog({ testFile, testTemplate });
         }
-        // TODO: Check if file exists here and if so log that the test already exists
         if (existsSync(testFile)) {
           return fileExistsLog({ testFile });
+        } else {
+          promises.writeFile(testFile, testTemplate, 'utf8');
         }
-        promises.writeFile(testFile, testTemplate, 'utf8');
       } else {
         if (config.dryRun) {
           return dryRunLog({ testFile, testTemplate });
@@ -58,7 +59,9 @@ const userConfig: Partial<Config> = {
           .then(() => {
             promises.writeFile(testFile, testTemplate, 'utf8');
           })
-          .catch(() => {});
+          .catch(err => {
+            console.log(chalk.yellow('Something went wrong...', err));
+          });
       }
     }
   });

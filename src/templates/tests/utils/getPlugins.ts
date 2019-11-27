@@ -5,16 +5,5 @@ export const getPlugins = (
   fileContents: string,
   fileExtension: SupportedFileExtensions
 ) => {
-  if (fileExtension === '.ts' || fileExtension === '.tsx') {
-    return ['typescript', 'jsx'] as ParserPlugin[];
-  }
-
-  // TODO: FLow support
-  // if (
-  //   fileExtension === 'js' &&
-  //   flowComments.some((x: string) => fileContents.includes(x))
-  // ) {
-  //   return ['flow'];
-  // }
-  return ['jsx'] as ParserPlugin[];
+  return ['typescript', 'jsx'] as ParserPlugin[];
 };

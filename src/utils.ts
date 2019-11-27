@@ -32,12 +32,15 @@ interface DryRunArgs {
   testTemplate?: string;
 }
 
+const SPACER_REPEAT = 10;
 export const fileExistsLog = (args: DryRunArgs) => {
   const { testFile } = args;
   console.log(
+    '-'.repeat(SPACER_REPEAT),
     chalk.yellow(
-      `File exists: ${testFile}. Skipping creation of test template.`
-    )
+      `\n File exists: \n ${testFile} \n Skipping creation of test template. \n`
+    ),
+    '-'.repeat(SPACER_REPEAT)
   );
   return;
 };
@@ -52,7 +55,9 @@ export const dryRunLog = (args: DryRunArgs) => {
     });
 
     console.log(
-      `Dry run: ${testFile} would have been written with template: \n \n ${highlighted}`
+      '-'.repeat(SPACER_REPEAT),
+      `\n Dry run: ${testFile} would have been written with template: \n \n ${highlighted} \n`,
+      '-'.repeat(SPACER_REPEAT)
     );
   }
   return;
