@@ -1,24 +1,28 @@
 {
-  "name": "gentests",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@srsholmes/gentests",
+  "version": "0.0.1",
+  "description": "Automatically generate unit test templates",
   "main": "index.js",
   "scripts": {
-    "debug": "nodemon src/index.ts",
-    "convert": "ts-jest config:migrate ../jest.config.js",
     "test": "jest ./src --watch",
-    "coverage": "jest --collectCoverageFrom=src/**.js --coverage",
     "build": "tsc",
     "build:watch": "tsc -w",
-    "lint:list": "eslint */**/*.js --fix",
-    "lint": "eslint */**/*.js --fix",
-    "start:prod": "nodemon src/index.ts",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
   },
   "prettier": {
     "singleQuote": true
   },
-  "keywords": [],
+  "keywords": [
+    "ava",
+    "enzyme",
+    "jest",
+    "react",
+    "react-testing-library",
+    "tape",
+    "test",
+    "testing",
+    "unit"
+  ],
   "author": "Simon Holmes",
   "license": "ISC",
   "dependencies": {
@@ -30,28 +34,23 @@
     "@babel/preset-react": "^7.7.0",
     "@babel/preset-typescript": "^7.7.2",
     "@babel/traverse": "^7.7.2",
-    "@types/jest": "^24.0.12",
-    "@types/node": "^11.10.5",
-    "@types/prettier": "^1.18.3",
-    "babel-types": "^6.26.0",
-    "babylon": "^7.0.0-beta.47",
     "chalk": "^3.0.0",
     "cli-highlight": "^2.1.4",
     "fast-glob": "^3.1.0",
-    "ts-jest": "^24.0.0",
-    "ts-node": "^8.5.2",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.2.5",
     "@babel/types": "^7.7.2",
-    "@typescript-eslint/eslint-plugin": "^1.4.2",
-    "@typescript-eslint/parser": "^1.4.2",
-    "eslint": "^5.15.1",
-    "eslint-config-prettier": "^4.1.0",
+    "@types/jest": "^24.0.12",
+    "@types/node": "^12.12.14",
+    "@types/prettier": "^1.18.3",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.3.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^2.0.1",
     "prettier": "^1.16.4"
   }
 }
