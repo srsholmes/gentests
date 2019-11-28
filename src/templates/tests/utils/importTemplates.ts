@@ -15,7 +15,7 @@ const getImportForComponentFramework = (
       return '';
   }
 };
-export const getFrameworkImports = (config: Config) => {
+export const getFrameworkImports = (config: Config, hasAnyJSX: boolean) => {
   const { testComponentFramework } = config;
   const importForComponentFrameWork = getImportForComponentFramework(
     testComponentFramework
@@ -25,20 +25,20 @@ export const getFrameworkImports = (config: Config) => {
       const ava = `import test from 'ava'`;
       return `
         ${ava} 
-        ${importForComponentFrameWork}
+        ${hasAnyJSX ? importForComponentFrameWork : ''}
       `;
     }
     case 'tape': {
       const tape = `import test from 'tape'`;
       return `
         ${tape} 
-        ${importForComponentFrameWork}
+        ${hasAnyJSX ? importForComponentFrameWork : ''}
       `;
     }
     case 'jest':
     default: {
       return `
-        ${importForComponentFrameWork}
+        ${hasAnyJSX ? importForComponentFrameWork : ''}
       `;
     }
   }

@@ -1,6 +1,7 @@
 import { FileExport, GenerateTestArgs } from '../../../types';
 import { getFromPath } from './getFromPath';
 import { getFrameworkImports } from './importTemplates';
+import { file } from '@babel/types';
 
 export interface Accum {
   exportString: string;
@@ -44,8 +45,10 @@ export const getImportStatement = (args: GenerateTestArgs) => {
     }
   );
 
+  const hasAnyJSX = Boolean(fileExports.find((x: FileExport) => x.jsx))
+
   return `
     ${res.exportString.trim()} ${getFromPath(fileName)}
-    ${getFrameworkImports(config)}
+    ${getFrameworkImports(config, hasAnyJSX)}
    `;
 };
