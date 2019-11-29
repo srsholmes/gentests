@@ -1,4 +1,4 @@
-import { Config, SupportedComponentTestFrameWorks } from '../../../types';
+import { Config, SupportedComponentTestFrameWorks } from '../../types';
 
 const getImportForComponentFramework = (
   testComponentFramework: SupportedComponentTestFrameWorks

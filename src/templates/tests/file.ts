@@ -1,7 +1,7 @@
-import { FileExport, GenerateTestArgs } from '../../../types';
-import { sortExports } from '../../../utils';
-import { getImportStatement } from '../utils/getImportStatement';
-import { testTemplate } from '../utils/testTemplates';
+import { FileExport, GenerateTestArgs } from '../../types';
+import { sortExports } from '../../utils';
+import { getImportStatement } from './getImportStatement';
+import { testTemplate } from './testTemplates';
 
 
 export const typeScriptFile = (args: GenerateTestArgs) => {

@@ -1,7 +1,7 @@
-import { parseFile } from './templates/tests/utils/parseFile';
+import { parseFile } from './templates/tests/parseFile';
 import { existsSync, promises, readFileSync } from 'fs';
-import { getDirectoriesAndComponents } from './templates/tests/utils/getFiles';
-import { generateTest } from './templates/tests/utils/generateTest';
+import { getDirectoriesAndComponents } from './templates/tests/getFiles';
+import { generateTest } from './templates/tests/generateTest';
 import { join } from 'path';
 import { Config, SupportedFileExtensions } from './types';
 import { defaultConfig } from './config';
@@ -10,7 +10,7 @@ import chalk from 'chalk';
 
 const userConfig: Partial<Config> = {
   testComponentFramework: '@test-library/react',
-  dryRun: true
+  dryRun: false
 };
 
 (async () => {
@@ -30,7 +30,8 @@ const userConfig: Partial<Config> = {
     const exportsFromFile = parseFile({
       fileContents,
       fileName: name,
-      fileExtension: ext as SupportedFileExtensions
+      fileExtension: ext as SupportedFileExtensions,
+      config
     });
 
     if (exportsFromFile?.fileExports.length) {

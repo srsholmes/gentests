@@ -1,7 +1,7 @@
 import { parse } from '@babel/parser';
 import { Statement } from '@babel/types';
-import { ParseFileArgs } from '../../../types';
-import { flatten, testIfNodeIsJSX } from '../../../utils';
+import { ParseFileArgs } from '../../types';
+import { flatten, testIfNodeIsJSX } from '../../utils';
 import { getDefaultName, getNamedExport } from './getExportNames';
 
 export const parseFile = ({

@@ -1,5 +1,5 @@
-import { FileExport } from '../../../types';
-import { testIfNodeIsJSX } from '../../../utils';
+import { FileExport } from '../../types';
+import { testIfNodeIsJSX } from '../../utils';
 
 export const getDefaultName = (
   node: any, // TODO: remove the any

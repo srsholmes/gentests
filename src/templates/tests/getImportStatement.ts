@@ -1,4 +1,4 @@
-import { FileExport, GenerateTestArgs } from '../../../types';
+import { FileExport, GenerateTestArgs } from '../../types';
 import { getFromPath } from './getFromPath';
 import { getFrameworkImports } from './importTemplates';
 

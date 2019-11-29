@@ -3,7 +3,7 @@ import {
   FileExport,
   SupportedComponentTestFrameWorks,
   SupportedTestFrameWorks
-} from '../../../types';
+} from '../../types';
 
 let expectation = `const expected = null;`;
 

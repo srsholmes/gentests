@@ -1,4 +1,4 @@
-import { SupportedFileExtensions } from '../../../types';
+import { SupportedFileExtensions } from '../../types';
 import { ParserPlugin } from '@babel/parser';
 
 export const getPlugins = (

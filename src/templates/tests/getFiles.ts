@@ -1,6 +1,6 @@
 import { join, parse } from 'path';
 import fg from 'fast-glob';
-import { Config } from '../../../types';
+import { Config } from '../../types';
 
 const DEFAULT_IGNORED = [
   '**/components/**/*.stories.tsx',
@@ -35,8 +35,8 @@ export const getDirectoriesAndComponents = async (config: Config) => {
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
-      join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
-      // join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}')
+      // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
+      join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}')
     ],
     {
       ignore: [...DEFAULT_IGNORED, ...ignored]

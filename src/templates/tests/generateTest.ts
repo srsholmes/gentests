@@ -1,6 +1,6 @@
-import { GenerateTestArgs } from '../../../types';
-import { typescriptJSX } from '../TS/component';
-import { typeScriptFile } from '../TS/file';
+import { GenerateTestArgs } from '../../types';
+import { typescriptJSX } from './component';
+import { typeScriptFile } from './file';
 import prettier, { BuiltInParserName } from 'prettier';
 
 //TODO: Read prettier config, if that exists, use that config to format the tests
