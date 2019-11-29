@@ -34,6 +34,7 @@ export const getDirectoriesAndComponents = async (config: Config) => {
     [
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
+      // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
       join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
       // join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}')
     ],

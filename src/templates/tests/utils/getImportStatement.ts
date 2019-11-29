@@ -45,7 +45,7 @@ export const getImportStatement = (args: GenerateTestArgs) => {
     }
   );
 
-  const hasAnyJSX = Boolean(fileExports.find((x: FileExport) => x.jsx))
+  const hasAnyJSX = Boolean(fileExports.find((x: FileExport) => x.jsx));
 
   return `
     ${res.exportString.trim()} ${getFromPath(fileName)}
