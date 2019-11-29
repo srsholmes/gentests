@@ -1,3 +1,5 @@
+import { ParserPlugin } from '@babel/parser';
+
 export interface FileExport {
   type: string;
   name: string;
@@ -12,6 +14,7 @@ export interface ParseFileArgs {
   fileContents: string;
   fileName: string;
   fileExtension: SupportedFileExtensions;
+  config: Config
 }
 
 export type SupportedComponentTestFrameWorks =
@@ -26,6 +29,7 @@ export interface Config {
   included: string[];
   testFramework: SupportedTestFrameWorks;
   testComponentFramework: SupportedComponentTestFrameWorks;
+  babelPlugins: ParserPlugin[];
 }
 
 export interface GenerateTestArgs {

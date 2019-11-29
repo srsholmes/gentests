@@ -30,6 +30,7 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/parser": "^7.7.3",
+    "@babel/plugin-syntax-optional-chaining": "^7.7.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.7.0",

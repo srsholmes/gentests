@@ -1,7 +1,6 @@
 import { FileExport, GenerateTestArgs } from '../../../types';
 import { getFromPath } from './getFromPath';
 import { getFrameworkImports } from './importTemplates';
-import { file } from '@babel/types';
 
 export interface Accum {
   exportString: string;

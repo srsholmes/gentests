@@ -1,7 +1,10 @@
 import { FileExport } from '../../../types';
 import { testIfNodeIsJSX } from '../../../utils';
 
-export const getDefaultName = (node: any, fileName?: string) => {
+export const getDefaultName = (
+  node: any, // TODO: remove the any
+  fileName?: string
+) => {
   if (node.declaration) {
     if (node.declaration.id) {
       return node.declaration.id.name;
@@ -12,10 +15,10 @@ export const getDefaultName = (node: any, fileName?: string) => {
 };
 
 export const getNamedExport = (
-  node: any
+  node: any // TODO: Remove the any
 ): FileExport | FileExport[] | undefined => {
   const isJSX = testIfNodeIsJSX(node);
-  if (node.declaration && node.declaration.id) {
+  if (node.declaration?.id) {
     return {
       type: node.type,
       declarationType: node.declaration.id.type,
@@ -23,7 +26,7 @@ export const getNamedExport = (
       jsx: isJSX
     };
   }
-  if (node.declaration && node.declaration.declarations) {
+  if (node.declaration?.declarations) {
     return node.declaration.declarations.map((declaration: any) => {
       return {
         type: node.type,
@@ -33,7 +36,7 @@ export const getNamedExport = (
       };
     });
   }
-  if (node.specifiers && node.specifiers.length >= 1) {
+  if (node.specifiers?.length >= 1) {
     return node.specifiers.map((specifier: any) => {
       return {
         type: node.type,

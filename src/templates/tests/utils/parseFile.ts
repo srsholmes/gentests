@@ -4,11 +4,15 @@ import { ParseFileArgs } from '../../../types';
 import { flatten, testIfNodeIsJSX } from '../../../utils';
 import { getDefaultName, getNamedExport } from './getExportNames';
 
-export const parseFile = ({ fileContents, fileName }: ParseFileArgs) => {
+export const parseFile = ({
+  fileContents,
+  fileName,
+  config
+}: ParseFileArgs) => {
   try {
     const parsedCode = parse(fileContents, {
       sourceType: 'module',
-      plugins: ['typescript', 'jsx']
+      plugins: ['typescript', 'jsx', 'optionalChaining', ...config.babelPlugins]
     });
     const arr = parsedCode.program.body.map(
       (node: Statement, i: number, arr: any[]) => {

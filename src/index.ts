@@ -33,8 +33,6 @@ const userConfig: Partial<Config> = {
       fileExtension: ext as SupportedFileExtensions
     });
 
-    console.log({ exportsFromFile });
-
     if (exportsFromFile?.fileExports.length) {
       const testTemplate = generateTest({
         fileExports: exportsFromFile.fileExports,
