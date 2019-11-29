@@ -32,11 +32,12 @@ export const getDirectoriesAndComponents = async (config: Config) => {
   console.log(join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}'));
   return fg(
     [
+      ...config.included
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
       // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
-      join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}')
+      // join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}')
     ],
     {
       ignore: [...DEFAULT_IGNORED, ...ignored]

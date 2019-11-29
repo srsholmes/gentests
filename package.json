@@ -8,6 +8,7 @@
     "build": "tsc",
     "build:watch": "tsc -w",
     "run:lib": "rm -rf lib && yarn build && node lib/index.js",
+    "remove:tests": "rm -rf lib && yarn build && node lib/removeTests.js",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
   },
   "prettier": {
