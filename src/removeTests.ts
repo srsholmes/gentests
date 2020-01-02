@@ -6,7 +6,7 @@ import { defaultConfig } from './config';
 (async () => {
   const config = {
     ...defaultConfig,
-    dryRun: true,
+    dryRun: false,
     included: [join(process.cwd(), '**/*.test.ts')]
   };
 

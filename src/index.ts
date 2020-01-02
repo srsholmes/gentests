@@ -9,8 +9,8 @@ import { dryRunLog, fileExistsLog } from './utils';
 import chalk from 'chalk';
 
 const userConfig: Partial<Config> = {
-  testComponentFramework: '@test-library/react',
-  dryRun: false
+  // testComponentFramework: '@test-library/react',
+  // dryRun: false
 };
 
 (async () => {

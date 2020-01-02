@@ -28,16 +28,15 @@ const IGNORED_COMPONENTS: string[] = [
 
 export const getDirectoriesAndComponents = async (config: Config) => {
   const { ignored } = config;
-  console.log(process.cwd());
-  console.log(join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}'));
   return fg(
     [
-      ...config.included
+      ...config.included,
       // join(process.cwd(), '**/components/JS/ComponentFour/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/components/**/*.{ts,tsx,js,jsx}'),
       // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
       // join(process.cwd(), '**/utils/**/*.{ts,tsx,js,jsx}')
       // join(process.cwd(), 'src/**/*.{ts,tsx,js,jsx}')
+      join(process.cwd(), 'testSrc/**/*.{ts,tsx,js,jsx}')
     ],
     {
       ignore: [...DEFAULT_IGNORED, ...ignored]

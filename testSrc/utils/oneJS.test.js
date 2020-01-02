@@ -7,8 +7,6 @@ import hello, {
   exportDivide
 } from "./oneJS";
 
-import { render } from "@testing-library/react";
-
 describe("hello", () => {
   it("hello should fail the automatically generated test", () => {
     const actual = hello();
